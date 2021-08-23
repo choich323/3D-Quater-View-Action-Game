@@ -31,5 +31,9 @@ public class Player : MonoBehaviour
 
         anim.SetBool("isRun", moveVec != Vector3.zero); // 벡터가 0인지 아닌지
         anim.SetBool("isWalk", wDown);
+
+
+        transform.LookAt(transform.position + moveVec);
+
     }
 }
