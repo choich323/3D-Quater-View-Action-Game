@@ -8,13 +8,18 @@ public class Player : MonoBehaviour
     float hAxis;
     float vAxis;
     bool wDown;
+    bool jDown;
+
+    bool isJump;
 
     Vector3 moveVec;
+    Rigidbody rigid;
     Animator anim;
 
     // Start is called before the first frame update
     void Awake()
     {
+        rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -24,6 +29,7 @@ public class Player : MonoBehaviour
         GetInput();
         Move();
         Turn();
+        Jump();
     }
 
     void GetInput()
@@ -31,6 +37,7 @@ public class Player : MonoBehaviour
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
         wDown = Input.GetButton("Walk");
+        jDown = Input.GetButtonDown("Jump");
     }
 
     void Move()
@@ -46,5 +53,25 @@ public class Player : MonoBehaviour
     void Turn()
     {
         transform.LookAt(transform.position + moveVec);
+    }
+
+    void Jump()
+    {
+        if (jDown && !isJump)
+        {
+            rigid.AddForce(Vector3.up * 30, ForceMode.Impulse);
+            anim.SetBool("isJump", true);
+            anim.SetTrigger("doJump");
+            isJump = true;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Floor")
+        {
+            anim.SetBool("isJump", false);
+            isJump = false;
+        }
     }
 }
