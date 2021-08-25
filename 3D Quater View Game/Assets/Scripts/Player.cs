@@ -11,8 +11,11 @@ public class Player : MonoBehaviour
     bool jDown;
 
     bool isJump;
+    bool isDodge;
 
     Vector3 moveVec;
+    Vector3 dodgeVec;
+
     Rigidbody rigid;
     Animator anim;
 
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Dodge();
     }
 
     void GetInput()
@@ -43,6 +47,8 @@ public class Player : MonoBehaviour
     void Move()
     {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
+        if (isDodge)
+            moveVec = dodgeVec;
 
         transform.position += moveVec * speed * (wDown ? 0.4f : 1f) * Time.deltaTime; // 삼항 연산자
 
@@ -57,13 +63,34 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if (jDown && !isJump)
+        if (jDown && moveVec == Vector3.zero && !isJump && !isDodge)
         {
-            rigid.AddForce(Vector3.up * 30, ForceMode.Impulse);
+            rigid.AddForce(Vector3.up * 20, ForceMode.Impulse);
             anim.SetBool("isJump", true);
             anim.SetTrigger("doJump");
             isJump = true;
         }
+    }
+
+    void Dodge()
+    {
+        if (jDown && moveVec != Vector3.zero && !isJump && !isDodge)
+        {
+            dodgeVec = moveVec;
+            speed *= 2;
+            anim.SetTrigger("doDodge");
+            isDodge = true;
+
+
+            Invoke("DodgeOut", 0.5f); // 시간차를 두고 함수를 실행하는 함수
+
+        }
+    }
+
+    void DodgeOut()
+    {
+        speed *= 0.5f;
+        isDodge = false;
     }
 
     void OnCollisionEnter(Collision collision)
