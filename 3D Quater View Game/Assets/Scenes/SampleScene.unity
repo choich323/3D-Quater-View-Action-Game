@@ -984,6 +984,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  weapon: []
+  hasWeapons: 000000
 --- !u!136 &1698213698
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1107,6 +1109,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1788945549156862658, guid: b1e19db38fc1e9f439b1d34db49da43f, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8616709839573847636, guid: b1e19db38fc1e9f439b1d34db49da43f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1268,6 +1274,14 @@ PrefabInstance:
     - target: {fileID: 3142013372305810894, guid: d0e40ce69f199684ba0e1628eb401afe, type: 3}
       propertyPath: m_Name
       value: Weapon Hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120513740400805492, guid: d0e40ce69f199684ba0e1628eb401afe, type: 3}
+      propertyPath: value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120513740400805498, guid: d0e40ce69f199684ba0e1628eb401afe, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0e40ce69f199684ba0e1628eb401afe, type: 3}
@@ -1449,6 +1463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7026346598952715242, guid: 99f9b97130962304fb649b151d48a7d5, type: 3}
+      propertyPath: value
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7357325562937270556, guid: 99f9b97130962304fb649b151d48a7d5, type: 3}
       propertyPath: m_Name
       value: Weapon SubMachineGun

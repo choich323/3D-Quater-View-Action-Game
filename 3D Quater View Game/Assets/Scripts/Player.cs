@@ -5,11 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
+    public GameObject[] weapon;
+    public bool[] hasWeapons;
+
     float hAxis;
     float vAxis;
     bool wDown;
     bool jDown;
-
+    bool iDown;
     bool isJump;
     bool isDodge;
 
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
         Turn();
         Jump();
         Dodge();
+        Interaction();
     }
 
     void GetInput()
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         wDown = Input.GetButton("Walk");
         jDown = Input.GetButtonDown("Jump");
+        iDown = Input.GetButtonDown("Interaction");
     }
 
     void Move()
@@ -88,11 +93,25 @@ public class Player : MonoBehaviour
 
         }
     }
-
     void DodgeOut()
     {
         speed *= 0.5f;
         isDodge = false;
+    }
+
+    void Interaction()
+    {
+        if(iDown && nearObject != null && !isJump && !isDodge)
+        {
+            if(nearObject.tag == "Weapon")
+            {
+                Item item = nearObject.GetComponent<Item>();
+                int weaponIndex = item.value;
+                hasWeapons[weaponIndex] = true;
+
+                Destroy(nearObject);
+            }
+        }
     }
 
     void OnCollisionEnter(Collision collision)
