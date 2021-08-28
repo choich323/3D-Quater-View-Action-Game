@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  weapon:
+  weapons:
   - {fileID: 525494722}
   - {fileID: 1477219132}
   - {fileID: 696406350}
