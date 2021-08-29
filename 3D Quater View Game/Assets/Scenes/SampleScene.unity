@@ -1291,6 +1291,14 @@ MonoBehaviour:
   - {fileID: 1477219132}
   - {fileID: 696406350}
   hasWeapons: 000000
+  ammo: 0
+  coin: 0
+  health: 100
+  hasGrenades: 0
+  maxAmmo: 999
+  maxCoin: 99999
+  maxHealth: 100
+  maxHasGrenades: 4
 --- !u!136 &1698213698
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1522,6 +1530,10 @@ PrefabInstance:
     - target: {fileID: 3260375119432611786, guid: 33bdabf5a92a7754e82ec808dc19f0de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451860020914329624, guid: 33bdabf5a92a7754e82ec808dc19f0de, type: 3}
+      propertyPath: value
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33bdabf5a92a7754e82ec808dc19f0de, type: 3}
