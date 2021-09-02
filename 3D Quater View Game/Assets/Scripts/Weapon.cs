@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
     {
         // 1
         yield return new WaitForSeconds(0.1f); // return null인 경우로직 실행 후 1프레임 대기
-                                               // 위 함수의 경우 n초 대기
+                                               // 이 함수의 경우 n초 대기
         meleeArea.enabled = true;
         trailEffect.enabled = true;
 
