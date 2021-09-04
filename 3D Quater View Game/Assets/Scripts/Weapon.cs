@@ -8,6 +8,9 @@ public class Weapon : MonoBehaviour
     public Type type;
     public int damage; // 공격력
     public float rate; // 공격 속도
+    public int maxAmmo; // 최대 탄환
+    public int curAmmo; // 현재 탄환
+
     public BoxCollider meleeArea; // 공격 범위
     public TrailRenderer trailEffect; // 공격 이펙트
     public Transform bulletPos; // 총알 위치
@@ -22,8 +25,9 @@ public class Weapon : MonoBehaviour
             StopCoroutine("Swing");  // 실행중인 코루틴을 진행상황에 상관없이 정지시킴.
             StartCoroutine("Swing"); // 코루틴 함수는 그냥 쓰면 안되고 스타트코루틴 함수를 이용해야함
         }
-        else if(type == Type.Range)
+        else if(type == Type.Range && curAmmo > 0)
         {
+            curAmmo--;
             StartCoroutine("Shot");
         }
     }
