@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         wDown = Input.GetButton("Walk");
         jDown = Input.GetButtonDown("Jump");
-        fDown = Input.GetButtonDown("Fire1");
+        fDown = Input.GetButton("Fire1");
         iDown = Input.GetButtonDown("Interaction");
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         if(fDown && isFireReady && !isDodge && !isSwap)
         {
             equipWeapon.Use();
-            anim.SetTrigger("doSwing");
+            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
             fireDelay = 0;
         }
     }

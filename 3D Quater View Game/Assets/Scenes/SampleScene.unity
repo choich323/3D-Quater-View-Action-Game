@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 325972729}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -15353,9 +15353,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   damage: 25
-  rate: 0.33
+  rate: 0.47
   meleeArea: {fileID: 525494723}
   trailEffect: {fileID: 407916098}
+  bulletPos: {fileID: 0}
+  bullet: {fileID: 0}
+  bulletCasePos: {fileID: 0}
+  bulletCase: {fileID: 0}
 --- !u!1001 &610175608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20472,11 +20476,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a3b41bbc390134e99886aa5d8767cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   damage: 0
-  rate: 0
+  rate: 0.15
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  bulletPos: {fileID: 1682388328}
+  bullet: {fileID: 7266875429489485572, guid: c340be148730b9940ba04bd1a4f15ccd, type: 3}
+  bulletCasePos: {fileID: 1422774731}
+  bulletCase: {fileID: 6845223078631583397, guid: 19dc22c79e7c5014992d796c37da52d6, type: 3}
 --- !u!1 &700790248
 GameObject:
   m_ObjectHideFlags: 0
@@ -20491,8 +20499,8 @@ GameObject:
   - component: {fileID: 700790249}
   - component: {fileID: 700790253}
   m_Layer: 0
-  m_Name: Wall (3)
-  m_TagString: Untagged
+  m_Name: Wall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -20776,6 +20784,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7209417620919649187, guid: 10653eccf6b69fd47938a227b4bf3863, type: 3}
   m_PrefabInstance: {fileID: 610175608}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &829757154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 829757155}
+  m_Layer: 0
+  m_Name: Case Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &829757155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829757154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.083, y: 0.96, z: -0.394}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1477219131}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &853253786
 GameObject:
   m_ObjectHideFlags: 0
@@ -20836,8 +20874,8 @@ GameObject:
   - component: {fileID: 876950638}
   - component: {fileID: 876950642}
   m_Layer: 0
-  m_Name: Wall (1)
-  m_TagString: Untagged
+  m_Name: Wall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -21046,8 +21084,8 @@ GameObject:
   - component: {fileID: 1089733835}
   - component: {fileID: 1089733839}
   m_Layer: 0
-  m_Name: Wall (2)
-  m_TagString: Untagged
+  m_Name: Wall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -21206,6 +21244,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7209417620919649187, guid: 10653eccf6b69fd47938a227b4bf3863, type: 3}
   m_PrefabInstance: {fileID: 492239438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1422774730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422774731}
+  m_Layer: 0
+  m_Name: Case Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1422774731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422774730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06, y: 0.778, z: -0.275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 696406351}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477219130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21289,11 +21357,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a3b41bbc390134e99886aa5d8767cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   damage: 0
-  rate: 0
+  rate: 0.4
   meleeArea: {fileID: 0}
   trailEffect: {fileID: 0}
+  bulletPos: {fileID: 1682388328}
+  bullet: {fileID: 4798318886966923484, guid: 85efdf8840d1b184ebe5b1b42acf9b3d, type: 3}
+  bulletCasePos: {fileID: 829757155}
+  bulletCase: {fileID: 6845223078631583397, guid: 19dc22c79e7c5014992d796c37da52d6, type: 3}
 --- !u!1 &1520945080
 GameObject:
   m_ObjectHideFlags: 0
@@ -21340,6 +21412,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1698213700}
   orbitSpeed: 20
+--- !u!1 &1682388327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682388328}
+  m_Layer: 0
+  m_Name: Bullet Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682388328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682388327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 2.5, z: 1.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1698213700}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1698213696 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
