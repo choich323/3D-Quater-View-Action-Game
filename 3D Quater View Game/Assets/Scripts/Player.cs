@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     bool isDodge; // dodge
     bool isSwap;  // weapon swap
     bool isFireReady = true;
+    bool isBorder;
 
     // move Vector
     Vector3 moveVec;
@@ -96,7 +97,8 @@ public class Player : MonoBehaviour
         if (isSwap || (!isFireReady && !isJump))
             moveVec = Vector3.zero;
 
-        transform.position += moveVec * speed * (wDown ? 0.4f : 1f) * Time.deltaTime; // 삼항 연산자
+        if(!isBorder)
+            transform.position += moveVec * speed * (wDown ? 0.4f : 1f) * Time.deltaTime; // 삼항 연산자
 
         anim.SetBool("isRun", moveVec != Vector3.zero); // 벡터가 0인지 아닌지
         anim.SetBool("isWalk", wDown);
@@ -248,9 +250,15 @@ public class Player : MonoBehaviour
         rigid.angularVelocity = Vector3.zero;
     }
 
+    void StopToWall()
+    {
+        isBorder = Physics.Raycast(transform.position, transform.forward, 3, LayerMask.GetMask("Wall"));
+    }
+
     void FixedUpdate()
     {
-        FreezeRotation();    
+        FreezeRotation();
+        StopToWall();
     }
 
     void OnCollisionEnter(Collision collision)
