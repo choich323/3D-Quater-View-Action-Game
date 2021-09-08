@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public GameObject[] grenades;
     public int hasGrenades;
     public Camera followCamera;
+    public GameObject grenadeObject;
 
     public int ammo;
     public int coin;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     bool wDown; // walk
     bool jDown; // jump
     bool fDown; // fire
+    bool gDown; // grenade
     bool rDown; // reload
     bool iDown; // interaction
     bool sDown1;  // weapon 1
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
     bool isSwap;  // weapon swap
     bool isFireReady = true;
     bool isBorder;
+    bool isReload;
 
     // move Vector
     Vector3 moveVec;
@@ -67,6 +70,7 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+        Grenade();
         Attack();
         Reload();
         Dodge();
@@ -81,6 +85,7 @@ public class Player : MonoBehaviour
         wDown = Input.GetButton("Walk");
         jDown = Input.GetButtonDown("Jump");
         fDown = Input.GetButton("Fire1");
+        gDown = Input.GetButtonDown("Fire2");
         rDown = Input.GetButtonDown("Reload");
         iDown = Input.GetButtonDown("Interaction");
         sDown1 = Input.GetButtonDown("Swap1");
@@ -134,6 +139,31 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Grenade()
+    {
+        if (hasGrenades == 0)
+            return;
+
+        if(gDown && !isReload && !isSwap)
+        {
+            Ray ray = followCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit rayHit;
+            if (Physics.Raycast(ray, out rayHit, 100)) // out: ray가 오브젝트에 충돌했을때 그 결과를 rayHit에 저장
+            {
+                Vector3 nextVec = rayHit.point - transform.position;
+                nextVec.y = 20;
+
+                GameObject instantGrenade = Instantiate(grenadeObject, transform.position, transform.rotation);
+                Rigidbody rigidGrenade = instantGrenade.GetComponent<Rigidbody>();
+                rigidGrenade.AddForce(nextVec, ForceMode.Impulse);
+                rigidGrenade.AddTorque(Vector3.back * 10, ForceMode.Impulse);
+
+                hasGrenades--;
+                grenades[hasGrenades].SetActive(false);
+            }
+        }
+    }
+
     void Attack()
     {
         if (equipWeapon == null)
@@ -161,17 +191,34 @@ public class Player : MonoBehaviour
         if (ammo == 0)
             return;
 
-        if(rDown && !isJump && !isDodge && !isSwap && isFireReady){
+        if (equipWeapon.curAmmo == equipWeapon.maxAmmo)
+            return;
+
+        if(rDown && !isJump && !isDodge && !isSwap && isFireReady && !isReload){
             anim.SetTrigger("doReload");
+            isReload = true;
             Invoke("Reloadout", 1.5f);
         }
     }
 
     void Reloadout()
     {
-        int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
-        equipWeapon.curAmmo = reAmmo;
-        ammo -= reAmmo;
+        int needAmmo = equipWeapon.maxAmmo - equipWeapon.curAmmo;
+
+        if (needAmmo == equipWeapon.maxAmmo)
+        {
+            int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
+            equipWeapon.curAmmo = reAmmo;
+            ammo -= reAmmo;
+        }
+        else
+        {
+            int reAmmo = needAmmo > ammo ? ammo : needAmmo;
+            equipWeapon.curAmmo += reAmmo;
+            ammo -= reAmmo;
+        }
+
+        isReload = false;
     }
 
     void Dodge()
