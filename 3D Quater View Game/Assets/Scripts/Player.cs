@@ -136,6 +136,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", true);
             anim.SetTrigger("doJump");
             isJump = true;
+            isReload = false;
         }
     }
 
@@ -151,7 +152,7 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out rayHit, 100)) // out: ray가 오브젝트에 충돌했을때 그 결과를 rayHit에 저장
             {
                 Vector3 nextVec = rayHit.point - transform.position;
-                nextVec.y = 20;
+                nextVec.y = 15;
 
                 GameObject instantGrenade = Instantiate(grenadeObject, transform.position, transform.rotation);
                 Rigidbody rigidGrenade = instantGrenade.GetComponent<Rigidbody>();
@@ -177,6 +178,7 @@ public class Player : MonoBehaviour
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doShot");
             fireDelay = 0;
+            isReload = false;
         }
     }
 
@@ -203,22 +205,25 @@ public class Player : MonoBehaviour
 
     void Reloadout()
     {
-        int needAmmo = equipWeapon.maxAmmo - equipWeapon.curAmmo;
-
-        if (needAmmo == equipWeapon.maxAmmo)
+        if (isReload)
         {
-            int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
-            equipWeapon.curAmmo = reAmmo;
-            ammo -= reAmmo;
-        }
-        else
-        {
-            int reAmmo = needAmmo > ammo ? ammo : needAmmo;
-            equipWeapon.curAmmo += reAmmo;
-            ammo -= reAmmo;
-        }
+            int needAmmo = equipWeapon.maxAmmo - equipWeapon.curAmmo;
 
-        isReload = false;
+            if (needAmmo == equipWeapon.maxAmmo)
+            {
+                int reAmmo = ammo < equipWeapon.maxAmmo ? ammo : equipWeapon.maxAmmo;
+                equipWeapon.curAmmo = reAmmo;
+                ammo -= reAmmo;
+            }
+            else
+            {
+                int reAmmo = needAmmo > ammo ? ammo : needAmmo;
+                equipWeapon.curAmmo += reAmmo;
+                ammo -= reAmmo;
+            }
+
+            isReload = false;
+        }
     }
 
     void Dodge()
@@ -229,10 +234,8 @@ public class Player : MonoBehaviour
             speed *= 2;
             anim.SetTrigger("doDodge");
             isDodge = true;
-
-
+            isReload = false;
             Invoke("DodgeOut", 0.5f); // 시간차를 두고 함수를 실행하는 함수
-
         }
     }
     void DodgeOut()
@@ -267,7 +270,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("doSwap");
 
             isSwap = true;
-
+            isReload = false;
             Invoke("SwapOut", 0.4f);
         }
     }
