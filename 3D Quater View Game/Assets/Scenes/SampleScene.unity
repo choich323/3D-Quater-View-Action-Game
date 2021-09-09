@@ -21246,6 +21246,7 @@ MonoBehaviour:
   maxHealth: 50
   curHealth: 50
   target: {fileID: 1698213700}
+  isChase: 0
 --- !u!65 &1010035918
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21545,6 +21546,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7209417620919649187, guid: 10653eccf6b69fd47938a227b4bf3863, type: 3}
   m_PrefabInstance: {fileID: 492239438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1277139857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5749865478261324880, guid: 464cc7c4f7ea10b47a36d7848aa9ca9a, type: 3}
+  m_PrefabInstance: {fileID: 825633322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1277139859
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277139857}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 543695bb3e6212146b5ab7371386a849, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1422774730
 GameObject:
   m_ObjectHideFlags: 0
