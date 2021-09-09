@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out rayHit, 100)) // out: ray가 오브젝트에 충돌했을때 그 결과를 rayHit에 저장
             {
                 Vector3 nextVec = rayHit.point - transform.position;
-                nextVec.y = 15;
+                nextVec.y = 20;
 
                 GameObject instantGrenade = Instantiate(grenadeObject, transform.position, transform.rotation);
                 Rigidbody rigidGrenade = instantGrenade.GetComponent<Rigidbody>();
