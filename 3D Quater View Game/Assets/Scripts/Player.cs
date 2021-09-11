@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     bool isFireReady = true;
     bool isBorder;
     bool isReload;
+    bool isDamage; // 무적 상태용
 
     // move Vector
     Vector3 moveVec;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
 
     Rigidbody rigid;
     Animator anim;
+    MeshRenderer[] meshs;
 
     GameObject nearObject;
     Weapon equipWeapon;
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        meshs = GetComponentsInChildren<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -322,7 +325,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Item")
+        if (other.tag == "Item")
         {
             Item item = other.GetComponent<Item>();
             switch (item.type)
@@ -343,7 +346,7 @@ public class Player : MonoBehaviour
                         health = maxHealth;
                     break;
                 case Item.Type.Grenade:
-                    if(hasGrenades == maxHasGrenades)
+                    if (hasGrenades == maxHasGrenades)
                     {
                         Destroy(other.gameObject); // 최대치에서 획득할경우 아이템만 소멸함
                         return;
@@ -353,6 +356,33 @@ public class Player : MonoBehaviour
                     break;
             }
             Destroy(other.gameObject);
+        }
+        else if (other.tag == "EnemyBullet")
+        {
+            if(!isDamage){
+                Bullet enemyBullet = other.GetComponent<Bullet>();
+                health -= enemyBullet.damage;
+                StartCoroutine(OnDamage());
+            } 
+        }
+    }
+
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+        
+        foreach(MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.yellow;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        isDamage = false;
+
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.white;
         }
     }
 
