@@ -64,15 +64,15 @@ public class Enemy : MonoBehaviour
         switch (enemyType)
         {
             case Type.A:
-                targetRadius = 1.5f;
+                targetRadius = 2f;
                 targetRange = 3f;
                 break;
             case Type.B:
-                targetRadius = 1f;
+                targetRadius = 8f;
                 targetRange = 12f;
                 break;
             case Type.C:
-                targetRadius = 0.5f;
+                targetRadius = 10f;
                 targetRange = 25f;
                 break;
         }
