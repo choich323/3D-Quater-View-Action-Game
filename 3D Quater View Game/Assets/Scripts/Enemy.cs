@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int curHealth;
     public Transform target;
     public BoxCollider meleeArea;
+    public GameObject bullet;
     public bool isChase;
     public bool isAttack;
 
@@ -71,6 +72,8 @@ public class Enemy : MonoBehaviour
                 targetRange = 12f;
                 break;
             case Type.C:
+                targetRadius = 0.5f;
+                targetRange = 25f;
                 break;
         }
 
@@ -113,6 +116,12 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 break;
             case Type.C:
+                yield return new WaitForSeconds(0.5f);
+                GameObject instantBullet = Instantiate(bullet, transform.position, transform.rotation);
+                Rigidbody rigidBullet = instantBullet.GetComponent<Rigidbody>();
+                rigidBullet.velocity = transform.forward * 20;
+
+                yield return new WaitForSeconds(2f);
                 break;
         }
 

@@ -58,7 +58,6 @@ public class Weapon : MonoBehaviour
         // น฿ป็
         GameObject instantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = instantBullet.GetComponent<Rigidbody>();
-        bulletRigid.useGravity = false;
         bulletRigid.velocity = bulletPos.forward * 50;
         
         yield return null;
