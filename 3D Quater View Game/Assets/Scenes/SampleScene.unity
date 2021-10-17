@@ -21045,6 +21045,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &786343521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786343516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ff1545a1163c64ba3ebe4a96581ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 3
+  maxHealth: 100
+  curHealth: 100
+  target: {fileID: 1698213700}
+  meleeArea: {fileID: 1610843017}
+  bullet: {fileID: 4801803360589451601, guid: fae5c5d1d2aa2014ca6da6b35ae9b8a2, type: 3}
+  isChase: 0
+  isAttack: 0
+  missile: {fileID: 4579903303792754649, guid: c5e46e166c3ae1846ade08e1eecbde7d, type: 3}
+  missilePortA: {fileID: 1464667339}
+  missilePortB: {fileID: 699369531}
 --- !u!1 &820690986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3773346728750375572, guid: 83dab506297948d4d8d34c4fe12431ee, type: 3}
