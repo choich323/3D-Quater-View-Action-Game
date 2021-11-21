@@ -52,3 +52,13 @@ Update Mode: mergeDefaultDependencies
 
 The following packages were added:
   com.unity.2d.sprite@1.0.0
+
+=== Mon Nov 22 02:46:07 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.7.1 to 1.13.5
+  com.unity.ide.vscode from version 1.2.3 to 1.2.4
+  com.unity.test-framework from version 1.1.27 to 1.1.29
