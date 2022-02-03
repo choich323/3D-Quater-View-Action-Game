@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -362,14 +361,18 @@ public class Player : MonoBehaviour
             if(!isDamage){
                 Bullet enemyBullet = other.GetComponent<Bullet>();
                 health -= enemyBullet.damage;
-                if (other.GetComponent<Rigidbody>() != null)
-                    Destroy(other.gameObject);
-                StartCoroutine(OnDamage());
-            } 
+
+                bool isBoosAtk = other.name == "Boss Melee Area";
+
+                StartCoroutine(OnDamage(isBoosAtk));
+            }
+
+            if (other.GetComponent<Rigidbody>() != null) // 데미지 받지 않더라도(무적상태에서도) 플레이어와 충돌하면 투사체가 사라짐
+                Destroy(other.gameObject);
         }
     }
 
-    IEnumerator OnDamage()
+    IEnumerator OnDamage(bool isBossAtk)
     {
         isDamage = true;
         
@@ -377,6 +380,9 @@ public class Player : MonoBehaviour
         {
             mesh.material.color = Color.yellow;
         }
+
+        if (isBossAtk)
+            rigid.AddForce(transform.forward * -25, ForceMode.Impulse); // 보스의 찍기에 당했을 때 넉백 구현
 
         yield return new WaitForSeconds(1f);
 
@@ -386,6 +392,9 @@ public class Player : MonoBehaviour
         {
             mesh.material.color = Color.white;
         }
+
+        if (isBossAtk)
+            rigid.velocity = Vector3.zero; // 1초 후에 원상복구
     }
 
     void OnTriggerStay(Collider other)
